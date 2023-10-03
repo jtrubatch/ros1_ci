@@ -13,8 +13,7 @@ pipeline {
                         git pull origin main
                     fi
                     '''
-                sh 'cd ~/catkin_ws/src/ros1_ci'
-                sh 'sudo docker build -f ros1.dockerfile -t ros1_ci'
+                sh 'cd ~/catkin_ws/src/ros1_ci && sudo docker build -f ros1.dockerfile -t ros1_ci .'
             }
         }
         stage('TEST') {
