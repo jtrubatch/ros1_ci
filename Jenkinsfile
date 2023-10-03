@@ -1,6 +1,14 @@
 pipeline {
     agent any
     stages {
+        stage('SCM') {
+            steps {
+                script {
+                    properties([pipelineTriggers([pollSCM('* * * * *')])])
+                }
+                git branch: 'main', url: 'https://github.com/jtrubatch/ros1_ci.git'
+            }
+        }
         stage('BUILD') {
             steps {
                 sh 'cd ~/catkin_ws/src'
